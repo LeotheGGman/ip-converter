@@ -49,9 +49,9 @@ def to_octal_full(ip):
 
 def to_dword(ip):
     """Dotted-decimal → dword (some Windows APIs want this)."""
-    parts = [int(p) for p in ip.split(".")]
+    parts = [int(p) for p in ip.split(".")] #9/26/26
     return parts[3] * 16777216 + parts[2] * 65536 + parts[1] * 256 + parts[0]
-
+# What am I even doing fucking hell? 
 
 def to_ipv6_mapped(ip):
     """Dotted-decimal → IPv4-mapped IPv6 (::ffff:x.x.x.x)."""
@@ -86,7 +86,7 @@ def to_ipv6_brackets(ip):
 def all_forms(ip):
     """Return a dict of {description: value} for the given IPv4 address."""
     ip = ip.strip()
-    # Validate
+    # Validate some bullshit
     ipaddress.IPv4Address(ip)
 
     return [
@@ -104,7 +104,7 @@ def all_forms(ip):
         ("Shortened",          to_short(ip)),
     ]
 
-
+# 9/28/26 I figured it out
 def print_forms(ip, forms):
     print(f"\n{Fore.CYAN}[*]{Style.RESET_ALL} {ip}")
     for label, val in forms:
@@ -151,4 +151,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main() 
